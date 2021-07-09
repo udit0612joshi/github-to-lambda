@@ -23,7 +23,7 @@ def lambda_handler(event, context):
     try:
         obj = s3.Object(BUCKET_NAME, "udit.txt")
         body = obj.get()['Body'].read().decode()
-        print(body)
+        print("Message for testing")
     except ClientError:
         print("Key Not found")
 
