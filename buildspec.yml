@@ -9,7 +9,7 @@ phases:
       - echo "Zipping deployment package..."
       - zip -r9 ./deployment_package.zip .
       - zip -g deployment_package.zip lambda_function.py
-      - python3 test_url.py
+      - python -m test_url.py
   post_build:
     commands:
       - echo "Updating lambda Function..."
