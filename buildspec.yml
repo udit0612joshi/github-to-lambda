@@ -6,10 +6,11 @@ phases:
   build:
     commands:
       - pip install requests
+      - pip install pytest
       - echo "Zipping deployment package..."
       - zip -r9 ./deployment_package.zip .
       - zip -g deployment_package.zip lambda_function.py
-      - python -m test_url.py
+      - pytests Test
   post_build:
     commands:
       - echo "Updating lambda Function..."
