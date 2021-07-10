@@ -5,7 +5,7 @@ from datetime import datetime
 from botocore.exceptions import ClientError
 
 BUCKET_NAME = 'testbucket345346'
-JSON_RESPONSE = "helloworld"
+
 
 def respond(res):
     return {
@@ -33,6 +33,5 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
-        'body': json.dumps(JSON_RESPONSE)
+        'body': json.dumps('helloworld')
     }
-
