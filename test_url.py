@@ -1,6 +1,0 @@
-import requests
-
-res = requests.get('https://maas04yks8.execute-api.us-east-2.amazonaws.com/default/helloWorld')
-output = res.status_code
-text = res.json()
-assert text == "helloworl", "Output is not valid"
