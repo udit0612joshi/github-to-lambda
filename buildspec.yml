@@ -11,8 +11,10 @@ phases:
       - zip -r9 ./deployment_package.zip .
       - zip -g deployment_package.zip lambda_function.py
       - pytest test_response.py
+      - echo '#!/bin/bash' > /usr/local/bin/ok; echo 'if [[ "$CODEBUILD_BUILD_SUCCEEDING" == "0" ]]; then exit 1; else exit 0; fi' >> /usr/local/bin/ok; chmod +x /usr/local/bin/ok
   post_build:
     commands:
+      - ok && echo Build completed on `date`
       - echo "Updating lambda Function..."
       - aws lambda update-function-code --function-name helloWorld --zip-file fileb://deployment_package.zip
       - echo "DONE!!"
