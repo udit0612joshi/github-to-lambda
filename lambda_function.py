@@ -21,10 +21,10 @@ def s3_read_write():
     client = boto3.client('s3')
     date = datetime.now().strftime("%Y_%m_%d-%I:%M:%S_%p")
     client.put_object(Body=str(body) + "\n" + date, Bucket=BUCKET_NAME, Key=FILE_NAME)
-   
+    return json.dumps(JSON_STRING)
 
 def hello_world():
-    return json.dumps(JSON_STRING)
+    return JSON_STRING
 
 def lambda_handler(event, context):
     response = hello_world()
@@ -32,5 +32,5 @@ def lambda_handler(event, context):
     print(response)
     return {
         'statusCode': 200,
-        'body': response
+        'body': json.dumps(response)
     }
