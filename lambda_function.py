@@ -10,16 +10,6 @@ JSON_STRING = 'helloworld'
 FILE_NAME = 'data.csv'
 
 
-def respond(res):
-    return {
-        'statusCode': '200',
-        'body': json.dumps(res),
-        'headers': {
-            'Content-Type': 'application/json',
-        },
-    }
-
-
 def s3_read_write():
     s3 = boto3.resource('s3')
     body = ""
@@ -31,11 +21,13 @@ def s3_read_write():
     client = boto3.client('s3')
     date = datetime.now().strftime("%Y_%m_%d-%I:%M:%S_%p")
     client.put_object(Body=str(body) + "\n" + date, Bucket=BUCKET_NAME, Key=FILE_NAME)
+    return json.dumps(JSON_STRING)
 
 
 def lambda_handler(event, context):
-    s3_read_write()
+    response =  s3_read_write()
+    print('response')
     return {
         'statusCode': 200,
-        'body': json.dumps(JSON_STRING)
+        'body': response
     }
