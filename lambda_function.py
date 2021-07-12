@@ -6,7 +6,7 @@ from boto3 import s3
 from botocore.exceptions import ClientError
 
 BUCKET_NAME = 'testbucket345346'
-JSON_STRING = 'helloworld'
+JSON_STRING = 'byeworld'
 FILE_NAME = 'data.csv'
 
 
