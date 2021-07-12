@@ -2,5 +2,6 @@ import requests
 from lambda_function import *
 
 def test_api():
-    print(s3_read_write())
-    assert s3_read_write() == "helloworld" , "Output is not valid"
+    res = requests.get('https://maas04yks8.execute-api.us-east-2.amazonaws.com/default/helloWorld')
+    assert JSON_STRING == "helloworld", "Output is not valid"
+    assert res.json() == "helloworld", "Output is not valid"
